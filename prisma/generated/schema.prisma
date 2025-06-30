@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Filter {
+  id String @id @default(uuid())
+
+  manufacturers Manufacturer[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("filters")
+}
+
+model Manufacturer {
+  id String @id @default(uuid())
+
+  name      String
+  filters   Filter? @relation(fields: [filtersId], references: [id])
+  filtersId String? @map("filters_id")
+  models    Model[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("manufacturers")
+}
+
+model Model {
+  id String @id @default(uuid())
+
+  name           String
+  manufacturer   Manufacturer @relation(fields: [manufacturerId], references: [id])
+  manufacturerId String       @map("manufacturer_id")
+  series         Series[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("models")
+}
+
+model Series {
+  id String @id @default(uuid())
+
+  name             String
+  model            Model            @relation(fields: [modelId], references: [id])
+  modelId          String           @map("model_id")
+  engineCapacities EngineCapacity[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("series")
+}
+
+model EngineCapacity {
+  id String @id @default(uuid())
+
+  value    Float
+  series   Series @relation(fields: [seriesId], references: [id])
+  seriesId String @map("series_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("engine_capacities")
+}
