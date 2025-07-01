@@ -10,67 +10,70 @@ datasource db {
 }
 
 model Filter {
-  id            String          @id @default(uuid())
-  
+  id String @id @default(uuid())
+
   manufacturers Manufacturer[]
 
-  createdAt     DateTime        @default(now()) @map("created_at")
-  updatedAt     DateTime        @default(now()) @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
 
-	@@map("filters")
+  @@map("filters")
 }
 
 model Manufacturer {
-  id         String      @id @default(uuid())
+  id String @id @default(uuid())
 
-  name       String
-  filters    Filter?     @relation(fields: [filtersId], references: [id])
-  filtersId  String?     @map("filters_id")
-  models     Model[]
+  value      String
+  engName    String @map("eng_name")
+  koreanName String @map("korean_name")
 
-  createdAt  DateTime    @default(now()) @map("created_at")
-  updatedAt  DateTime    @default(now()) @map("updated_at")
+  filters   Filter? @relation(fields: [filtersId], references: [id])
+  filtersId String? @map("filters_id")
+  models    Model[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
 
   @@map("manufacturers")
 }
 
 model Model {
-  id              String      @id @default(uuid())
+  id String @id @default(uuid())
 
-  name            String
-  manufacturer    Manufacturer  @relation(fields: [manufacturerId], references: [id])
-  manufacturerId  String     @map("manufacturer_id")
-  series          Series[]
+  name           String
+  manufacturer   Manufacturer @relation(fields: [manufacturerId], references: [id])
+  manufacturerId String       @map("manufacturer_id")
+  series         Series[]
 
-  createdAt       DateTime   @default(now()) @map("created_at")
-  updatedAt       DateTime   @default(now()) @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
 
   @@map("models")
 }
 
 model Series {
-  id               String      @id @default(uuid())
+  id String @id @default(uuid())
 
   name             String
-  model            Model      @relation(fields: [modelId], references: [id])
-  modelId          String     @map("model_id")
+  model            Model            @relation(fields: [modelId], references: [id])
+  modelId          String           @map("model_id")
   engineCapacities EngineCapacity[]
 
-  createdAt        DateTime   @default(now()) @map("created_at")
-  updatedAt        DateTime   @default(now()) @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
 
   @@map("series")
 }
 
 model EngineCapacity {
-  id        String    @id @default(uuid())
+  id String @id @default(uuid())
 
-  value     Float
-  series    Series    @relation(fields: [seriesId], references: [id])
-  seriesId  String    @map("series_id")
+  value    Float
+  series   Series @relation(fields: [seriesId], references: [id])
+  seriesId String @map("series_id")
 
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @default(now()) @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
 
   @@map("engine_capacities")
 }

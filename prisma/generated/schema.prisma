@@ -23,7 +23,10 @@ model Filter {
 model Manufacturer {
   id String @id @default(uuid())
 
-  name      String
+  value      String
+  engName    String @map("eng_name")
+  koreanName String @map("korean_name")
+
   filters   Filter? @relation(fields: [filtersId], references: [id])
   filtersId String? @map("filters_id")
   models    Model[]

@@ -2412,7 +2412,9 @@ export namespace Prisma {
 
   export type ManufacturerMinAggregateOutputType = {
     id: string | null
-    name: string | null
+    value: string | null
+    engName: string | null
+    koreanName: string | null
     filtersId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2420,7 +2422,9 @@ export namespace Prisma {
 
   export type ManufacturerMaxAggregateOutputType = {
     id: string | null
-    name: string | null
+    value: string | null
+    engName: string | null
+    koreanName: string | null
     filtersId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2428,7 +2432,9 @@ export namespace Prisma {
 
   export type ManufacturerCountAggregateOutputType = {
     id: number
-    name: number
+    value: number
+    engName: number
+    koreanName: number
     filtersId: number
     createdAt: number
     updatedAt: number
@@ -2438,7 +2444,9 @@ export namespace Prisma {
 
   export type ManufacturerMinAggregateInputType = {
     id?: true
-    name?: true
+    value?: true
+    engName?: true
+    koreanName?: true
     filtersId?: true
     createdAt?: true
     updatedAt?: true
@@ -2446,7 +2454,9 @@ export namespace Prisma {
 
   export type ManufacturerMaxAggregateInputType = {
     id?: true
-    name?: true
+    value?: true
+    engName?: true
+    koreanName?: true
     filtersId?: true
     createdAt?: true
     updatedAt?: true
@@ -2454,7 +2464,9 @@ export namespace Prisma {
 
   export type ManufacturerCountAggregateInputType = {
     id?: true
-    name?: true
+    value?: true
+    engName?: true
+    koreanName?: true
     filtersId?: true
     createdAt?: true
     updatedAt?: true
@@ -2535,7 +2547,9 @@ export namespace Prisma {
 
   export type ManufacturerGroupByOutputType = {
     id: string
-    name: string
+    value: string
+    engName: string
+    koreanName: string
     filtersId: string | null
     createdAt: Date
     updatedAt: Date
@@ -2560,7 +2574,9 @@ export namespace Prisma {
 
   export type ManufacturerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
+    value?: boolean
+    engName?: boolean
+    koreanName?: boolean
     filtersId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2571,7 +2587,9 @@ export namespace Prisma {
 
   export type ManufacturerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
+    value?: boolean
+    engName?: boolean
+    koreanName?: boolean
     filtersId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2580,7 +2598,9 @@ export namespace Prisma {
 
   export type ManufacturerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
+    value?: boolean
+    engName?: boolean
+    koreanName?: boolean
     filtersId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2589,13 +2609,15 @@ export namespace Prisma {
 
   export type ManufacturerSelectScalar = {
     id?: boolean
-    name?: boolean
+    value?: boolean
+    engName?: boolean
+    koreanName?: boolean
     filtersId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ManufacturerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "filtersId" | "createdAt" | "updatedAt", ExtArgs["result"]["manufacturer"]>
+  export type ManufacturerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "value" | "engName" | "koreanName" | "filtersId" | "createdAt" | "updatedAt", ExtArgs["result"]["manufacturer"]>
   export type ManufacturerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     filters?: boolean | Manufacturer$filtersArgs<ExtArgs>
     models?: boolean | Manufacturer$modelsArgs<ExtArgs>
@@ -2616,7 +2638,9 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      name: string
+      value: string
+      engName: string
+      koreanName: string
       filtersId: string | null
       createdAt: Date
       updatedAt: Date
@@ -3046,7 +3070,9 @@ export namespace Prisma {
    */
   interface ManufacturerFieldRefs {
     readonly id: FieldRef<"Manufacturer", 'String'>
-    readonly name: FieldRef<"Manufacturer", 'String'>
+    readonly value: FieldRef<"Manufacturer", 'String'>
+    readonly engName: FieldRef<"Manufacturer", 'String'>
+    readonly koreanName: FieldRef<"Manufacturer", 'String'>
     readonly filtersId: FieldRef<"Manufacturer", 'String'>
     readonly createdAt: FieldRef<"Manufacturer", 'DateTime'>
     readonly updatedAt: FieldRef<"Manufacturer", 'DateTime'>
@@ -6800,7 +6826,9 @@ export namespace Prisma {
 
   export const ManufacturerScalarFieldEnum: {
     id: 'id',
-    name: 'name',
+    value: 'value',
+    engName: 'engName',
+    koreanName: 'koreanName',
     filtersId: 'filtersId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -6980,7 +7008,9 @@ export namespace Prisma {
     OR?: ManufacturerWhereInput[]
     NOT?: ManufacturerWhereInput | ManufacturerWhereInput[]
     id?: StringFilter<"Manufacturer"> | string
-    name?: StringFilter<"Manufacturer"> | string
+    value?: StringFilter<"Manufacturer"> | string
+    engName?: StringFilter<"Manufacturer"> | string
+    koreanName?: StringFilter<"Manufacturer"> | string
     filtersId?: StringNullableFilter<"Manufacturer"> | string | null
     createdAt?: DateTimeFilter<"Manufacturer"> | Date | string
     updatedAt?: DateTimeFilter<"Manufacturer"> | Date | string
@@ -6990,7 +7020,9 @@ export namespace Prisma {
 
   export type ManufacturerOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
+    value?: SortOrder
+    engName?: SortOrder
+    koreanName?: SortOrder
     filtersId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7003,7 +7035,9 @@ export namespace Prisma {
     AND?: ManufacturerWhereInput | ManufacturerWhereInput[]
     OR?: ManufacturerWhereInput[]
     NOT?: ManufacturerWhereInput | ManufacturerWhereInput[]
-    name?: StringFilter<"Manufacturer"> | string
+    value?: StringFilter<"Manufacturer"> | string
+    engName?: StringFilter<"Manufacturer"> | string
+    koreanName?: StringFilter<"Manufacturer"> | string
     filtersId?: StringNullableFilter<"Manufacturer"> | string | null
     createdAt?: DateTimeFilter<"Manufacturer"> | Date | string
     updatedAt?: DateTimeFilter<"Manufacturer"> | Date | string
@@ -7013,7 +7047,9 @@ export namespace Prisma {
 
   export type ManufacturerOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
+    value?: SortOrder
+    engName?: SortOrder
+    koreanName?: SortOrder
     filtersId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7027,7 +7063,9 @@ export namespace Prisma {
     OR?: ManufacturerScalarWhereWithAggregatesInput[]
     NOT?: ManufacturerScalarWhereWithAggregatesInput | ManufacturerScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Manufacturer"> | string
-    name?: StringWithAggregatesFilter<"Manufacturer"> | string
+    value?: StringWithAggregatesFilter<"Manufacturer"> | string
+    engName?: StringWithAggregatesFilter<"Manufacturer"> | string
+    koreanName?: StringWithAggregatesFilter<"Manufacturer"> | string
     filtersId?: StringNullableWithAggregatesFilter<"Manufacturer"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Manufacturer"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Manufacturer"> | Date | string
@@ -7254,7 +7292,9 @@ export namespace Prisma {
 
   export type ManufacturerCreateInput = {
     id?: string
-    name: string
+    value: string
+    engName: string
+    koreanName: string
     createdAt?: Date | string
     updatedAt?: Date | string
     filters?: FilterCreateNestedOneWithoutManufacturersInput
@@ -7263,7 +7303,9 @@ export namespace Prisma {
 
   export type ManufacturerUncheckedCreateInput = {
     id?: string
-    name: string
+    value: string
+    engName: string
+    koreanName: string
     filtersId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7272,7 +7314,9 @@ export namespace Prisma {
 
   export type ManufacturerUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    engName?: StringFieldUpdateOperationsInput | string
+    koreanName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filters?: FilterUpdateOneWithoutManufacturersNestedInput
@@ -7281,7 +7325,9 @@ export namespace Prisma {
 
   export type ManufacturerUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    engName?: StringFieldUpdateOperationsInput | string
+    koreanName?: StringFieldUpdateOperationsInput | string
     filtersId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7290,7 +7336,9 @@ export namespace Prisma {
 
   export type ManufacturerCreateManyInput = {
     id?: string
-    name: string
+    value: string
+    engName: string
+    koreanName: string
     filtersId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7298,14 +7346,18 @@ export namespace Prisma {
 
   export type ManufacturerUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    engName?: StringFieldUpdateOperationsInput | string
+    koreanName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ManufacturerUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    engName?: StringFieldUpdateOperationsInput | string
+    koreanName?: StringFieldUpdateOperationsInput | string
     filtersId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7607,7 +7659,9 @@ export namespace Prisma {
 
   export type ManufacturerCountOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
+    value?: SortOrder
+    engName?: SortOrder
+    koreanName?: SortOrder
     filtersId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7615,7 +7669,9 @@ export namespace Prisma {
 
   export type ManufacturerMaxOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
+    value?: SortOrder
+    engName?: SortOrder
+    koreanName?: SortOrder
     filtersId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7623,7 +7679,9 @@ export namespace Prisma {
 
   export type ManufacturerMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
+    value?: SortOrder
+    engName?: SortOrder
+    koreanName?: SortOrder
     filtersId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8173,7 +8231,9 @@ export namespace Prisma {
 
   export type ManufacturerCreateWithoutFiltersInput = {
     id?: string
-    name: string
+    value: string
+    engName: string
+    koreanName: string
     createdAt?: Date | string
     updatedAt?: Date | string
     models?: ModelCreateNestedManyWithoutManufacturerInput
@@ -8181,7 +8241,9 @@ export namespace Prisma {
 
   export type ManufacturerUncheckedCreateWithoutFiltersInput = {
     id?: string
-    name: string
+    value: string
+    engName: string
+    koreanName: string
     createdAt?: Date | string
     updatedAt?: Date | string
     models?: ModelUncheckedCreateNestedManyWithoutManufacturerInput
@@ -8218,7 +8280,9 @@ export namespace Prisma {
     OR?: ManufacturerScalarWhereInput[]
     NOT?: ManufacturerScalarWhereInput | ManufacturerScalarWhereInput[]
     id?: StringFilter<"Manufacturer"> | string
-    name?: StringFilter<"Manufacturer"> | string
+    value?: StringFilter<"Manufacturer"> | string
+    engName?: StringFilter<"Manufacturer"> | string
+    koreanName?: StringFilter<"Manufacturer"> | string
     filtersId?: StringNullableFilter<"Manufacturer"> | string | null
     createdAt?: DateTimeFilter<"Manufacturer"> | Date | string
     updatedAt?: DateTimeFilter<"Manufacturer"> | Date | string
@@ -8319,7 +8383,9 @@ export namespace Prisma {
 
   export type ManufacturerCreateWithoutModelsInput = {
     id?: string
-    name: string
+    value: string
+    engName: string
+    koreanName: string
     createdAt?: Date | string
     updatedAt?: Date | string
     filters?: FilterCreateNestedOneWithoutManufacturersInput
@@ -8327,7 +8393,9 @@ export namespace Prisma {
 
   export type ManufacturerUncheckedCreateWithoutModelsInput = {
     id?: string
-    name: string
+    value: string
+    engName: string
+    koreanName: string
     filtersId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -8377,7 +8445,9 @@ export namespace Prisma {
 
   export type ManufacturerUpdateWithoutModelsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    engName?: StringFieldUpdateOperationsInput | string
+    koreanName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filters?: FilterUpdateOneWithoutManufacturersNestedInput
@@ -8385,7 +8455,9 @@ export namespace Prisma {
 
   export type ManufacturerUncheckedUpdateWithoutModelsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    engName?: StringFieldUpdateOperationsInput | string
+    koreanName?: StringFieldUpdateOperationsInput | string
     filtersId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8567,14 +8639,18 @@ export namespace Prisma {
 
   export type ManufacturerCreateManyFiltersInput = {
     id?: string
-    name: string
+    value: string
+    engName: string
+    koreanName: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type ManufacturerUpdateWithoutFiltersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    engName?: StringFieldUpdateOperationsInput | string
+    koreanName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     models?: ModelUpdateManyWithoutManufacturerNestedInput
@@ -8582,7 +8658,9 @@ export namespace Prisma {
 
   export type ManufacturerUncheckedUpdateWithoutFiltersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    engName?: StringFieldUpdateOperationsInput | string
+    koreanName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     models?: ModelUncheckedUpdateManyWithoutManufacturerNestedInput
@@ -8590,7 +8668,9 @@ export namespace Prisma {
 
   export type ManufacturerUncheckedUpdateManyWithoutFiltersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    engName?: StringFieldUpdateOperationsInput | string
+    koreanName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
