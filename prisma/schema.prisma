@@ -40,7 +40,10 @@ model Manufacturer {
 model Model {
   id String @id @default(uuid())
 
-  name           String
+  value      String
+  engName    String @map("eng_name")
+  koreanName String @map("korean_name")
+
   manufacturer   Manufacturer @relation(fields: [manufacturerId], references: [id])
   manufacturerId String       @map("manufacturer_id")
   series         Series[]

@@ -10,4 +10,9 @@ export class FilterController {
 	async fetchManufacturers() {
 		return this.filterService.fetchManufacturers()
 	}
+
+	@Get('models')
+	async fetchModels() {
+		return this.filterService.fetchModels()
+	}
 }

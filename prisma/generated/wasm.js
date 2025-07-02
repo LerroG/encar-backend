@@ -138,7 +138,9 @@ exports.Prisma.ManufacturerScalarFieldEnum = {
 
 exports.Prisma.ModelScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  value: 'value',
+  engName: 'engName',
+  koreanName: 'koreanName',
   manufacturerId: 'manufacturerId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
