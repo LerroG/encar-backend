@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import axios from 'axios'
 
 import { PrismaService } from '@/src/core/prisma/prisma.service'
+import { getRandomHeaders } from '@/src/shared/utils/getRandomHeaders.util'
 
 import {
 	IManufacturerFacet,
@@ -22,23 +23,7 @@ export class FilterService {
 						q: '(And.Hidden.N._.CarType.A.)',
 						inav: '|Metadata|Sort'
 					},
-					headers: {
-						Accept: 'application/json, text/javascript, */*; q=0.01',
-						'Accept-Encoding': 'gzip, deflate, br, zstd',
-						'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
-						Origin: 'http://www.encar.com',
-						Referer: 'http://www.encar.com/',
-						'Sec-Ch-Ua':
-							'"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
-						'Sec-Ch-Ua-Mobile': '?0',
-						'Sec-Ch-Ua-Platform': '"Windows"',
-						'Sec-Fetch-Dest': 'empty',
-						'Sec-Fetch-Mode': 'cors',
-						'Sec-Fetch-Site': 'cross-site',
-						'User-Agent':
-							'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
-						Priority: 'u=1, i'
-					}
+					headers: getRandomHeaders()
 				}
 			)
 
@@ -85,23 +70,7 @@ export class FilterService {
 							q: `(And.Hidden.N._.(C.CarType.A._.Manufacturer.${manufacturer.value}.))`,
 							inav: '|Metadata|Sort'
 						},
-						headers: {
-							Accept: 'application/json, text/javascript, */*; q=0.01',
-							'Accept-Encoding': 'gzip, deflate, br, zstd',
-							'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
-							Origin: 'http://www.encar.com',
-							Referer: 'http://www.encar.com/',
-							'Sec-Ch-Ua':
-								'"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
-							'Sec-Ch-Ua-Mobile': '?0',
-							'Sec-Ch-Ua-Platform': '"Windows"',
-							'Sec-Fetch-Dest': 'empty',
-							'Sec-Fetch-Mode': 'cors',
-							'Sec-Fetch-Site': 'cross-site',
-							'User-Agent':
-								'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
-							Priority: 'u=1, i'
-						}
+						headers: getRandomHeaders()
 					}
 				)
 
