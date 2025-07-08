@@ -6,6 +6,11 @@ import { FilterService } from './filter.service'
 export class FilterController {
 	constructor(private readonly filterService: FilterService) {}
 
+	@Get('test')
+	async testConnection() {
+		return this.filterService.testConnection()
+	}
+
 	@Get('manufacturers')
 	async fetchManufacturers() {
 		return this.filterService.fetchManufacturers()
@@ -14,5 +19,10 @@ export class FilterController {
 	@Get('models')
 	async fetchModels() {
 		return this.filterService.fetchModels()
+	}
+
+	@Get('series')
+	async fetchSeries() {
+		return this.filterService.fetchSeries()
 	}
 }

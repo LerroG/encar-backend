@@ -13,6 +13,31 @@ import {
 export class FilterService {
 	constructor(private prismaService: PrismaService) {}
 
+	async testConnection() {
+		try {
+			const response = await axios.get(
+				'https://api.encar.com/search/car/list/general',
+				{
+					params: {
+						count: false,
+						q: '(And.Hidden.N._.CarType.A.)',
+						inav: '|Metadata|Sort'
+					},
+					headers: getRandomHeaders()
+				}
+			)
+
+			if (!response || !response.data) {
+				throw new Error('Не удалось получить данные от encar')
+			}
+
+			return 'Manufacturers fetched successfully'
+		} catch (error) {
+			console.error('Failed to fetch manufacturers:', error)
+			throw new Error('Failed to fetch manufacturers')
+		}
+	}
+
 	async fetchManufacturers() {
 		try {
 			const response = await axios.get(
@@ -112,5 +137,82 @@ export class FilterService {
 			}
 		}
 		return 'Models fetched successfully'
+	}
+
+	async fetchSeries() {
+		const models = await this.prismaService.model.findMany({
+			include: { manufacturer: true }
+		})
+
+		for (const model of models) {
+			try {
+				const response = await axios.get(
+					'https://api.encar.com/search/car/list/general',
+					{
+						params: {
+							count: false,
+							q: `(And.Hidden.N._.(C.CarType.A._.(C.Manufacturer.${model.manufacturer.value}._.ModelGroup.${model.value}.)))`,
+							inav: '|Metadata|Sort'
+						},
+						headers: getRandomHeaders()
+					}
+				)
+
+				if (!response || !response.data) {
+					throw new Error('Не удалось получить данные от encar')
+				}
+
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+				const arr = response.data.iNav.Nodes[1].Facets[0].Refinements.Nodes[0]
+					.Facets as IManufacturerFacet[]
+				const manufacturerObj = arr.find(
+					item => item.Value === model.manufacturer.value
+				) as IManufacturerFacetWithModels
+
+				if (
+					manufacturerObj &&
+					manufacturerObj.Refinements &&
+					Array.isArray(manufacturerObj.Refinements.Nodes)
+				) {
+					const nodes = manufacturerObj.Refinements.Nodes
+					if (nodes.length > 0 && Array.isArray(nodes[0].Facets)) {
+						const modelObj = nodes[0].Facets.find(
+							item => item.Value === model.value
+						) as IManufacturerFacetWithModels
+						if (
+							modelObj &&
+							modelObj.Refinements &&
+							Array.isArray(modelObj.Refinements.Nodes)
+						) {
+							const nodes = modelObj.Refinements.Nodes
+							if (nodes.length > 0 && Array.isArray(nodes[0].Facets)) {
+								const seriesArr = nodes[0]
+									.Facets as IManufacturerFacetWithModels[]
+								for (const facet of seriesArr) {
+									const metadata = facet.Metadata as { EngName?: string[] }
+									const value = facet.Value
+									const engName = metadata?.EngName?.[0] ?? ''
+									const koreanName = facet.DisplayValue ?? ''
+									await this.prismaService.series.create({
+										data: {
+											modelId: model.id,
+											value,
+											engName,
+											koreanName
+										}
+									})
+								}
+							}
+						}
+					}
+				}
+			} catch (error) {
+				console.error(
+					`Failed to fetch series for manufacturer ${model.manufacturer.value}, model ${model.value}:`,
+					error
+				)
+			}
+		}
+		return 'Series fetched successfully'
 	}
 }

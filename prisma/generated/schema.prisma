@@ -57,7 +57,10 @@ model Model {
 model Series {
   id String @id @default(uuid())
 
-  name             String
+  value      String
+  engName    String @map("eng_name")
+  koreanName String @map("korean_name")
+
   model            Model            @relation(fields: [modelId], references: [id])
   modelId          String           @map("model_id")
   engineCapacities EngineCapacity[]
