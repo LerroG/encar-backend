@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import axios from 'axios'
 
 import { PrismaService } from '@/src/core/prisma/prisma.service'
-import { getRandomHeaders } from '@/src/shared/utils/getRandomHeaders.util'
+import { getHeaders } from '@/src/shared/utils/getHeaders.util'
 
 import {
 	IManufacturerFacet,
@@ -23,7 +23,7 @@ export class FilterService {
 						q: '(And.Hidden.N._.CarType.A.)',
 						inav: '|Metadata|Sort'
 					},
-					headers: getRandomHeaders()
+					headers: getHeaders()
 				}
 			)
 
@@ -31,7 +31,8 @@ export class FilterService {
 				throw new Error('Не удалось получить данные от encar')
 			}
 
-			return 'Manufacturers fetched successfully'
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+			return response.data
 		} catch (error) {
 			console.error('Failed to fetch manufacturers:', error)
 			throw new Error('Failed to fetch manufacturers')
@@ -48,7 +49,7 @@ export class FilterService {
 						q: '(And.Hidden.N._.CarType.A.)',
 						inav: '|Metadata|Sort'
 					},
-					headers: getRandomHeaders()
+					headers: getHeaders()
 				}
 			)
 
@@ -95,7 +96,7 @@ export class FilterService {
 							q: `(And.Hidden.N._.(C.CarType.A._.Manufacturer.${manufacturer.value}.))`,
 							inav: '|Metadata|Sort'
 						},
-						headers: getRandomHeaders()
+						headers: getHeaders()
 					}
 				)
 
@@ -143,7 +144,6 @@ export class FilterService {
 		const models = await this.prismaService.model.findMany({
 			include: { manufacturer: true }
 		})
-
 		for (const model of models) {
 			try {
 				const response = await axios.get(
@@ -154,7 +154,7 @@ export class FilterService {
 							q: `(And.Hidden.N._.(C.CarType.A._.(C.Manufacturer.${model.manufacturer.value}._.ModelGroup.${model.value}.)))`,
 							inav: '|Metadata|Sort'
 						},
-						headers: getRandomHeaders()
+						headers: getHeaders()
 					}
 				)
 
