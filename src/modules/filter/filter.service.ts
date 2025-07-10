@@ -13,6 +13,29 @@ import {
 export class FilterService {
 	constructor(private prismaService: PrismaService) {}
 
+	async getManufacturers() {
+		return this.prismaService.manufacturer.findMany()
+	}
+
+	async getModels() {
+		return this.prismaService.model.findMany()
+	}
+
+	async getSeries() {
+		return this.prismaService.series.findMany()
+	}
+
+	async getModelsByManufacturer(manufacturerId: string) {
+		return this.prismaService.model.findMany({
+			where: { manufacturerId }
+		})
+	}
+
+	async getSeriesByModel(modelId: string) {
+		return this.prismaService.series.findMany({
+			where: { modelId }
+		})
+	}
 	async testConnection() {
 		try {
 			const response = await axios.get(
@@ -39,7 +62,7 @@ export class FilterService {
 		}
 	}
 
-	async fetchManufacturers() {
+	async fetchManufacturersFromEncar() {
 		try {
 			const response = await axios.get(
 				'https://api.encar.com/search/car/list/general',
@@ -83,7 +106,7 @@ export class FilterService {
 		}
 	}
 
-	async fetchModels() {
+	async fetchModelsFromEncar() {
 		const manufacturers = await this.prismaService.manufacturer.findMany()
 
 		for (const manufacturer of manufacturers) {
@@ -140,7 +163,7 @@ export class FilterService {
 		return 'Models fetched successfully'
 	}
 
-	async fetchSeries() {
+	async fetchSeriesFromEncar() {
 		const models = await this.prismaService.model.findMany({
 			include: { manufacturer: true }
 		})
